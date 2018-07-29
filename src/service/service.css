@@ -19,3 +19,8 @@
     max-width: 80%;
     transition: 0.3s;
 }
+
+.service-item.inactive .service-image {
+    filter: grayscale(100%);
+    opacity: 0.2;
+}

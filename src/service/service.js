@@ -3,10 +3,18 @@ import './service.css';
 
 class Service extends Component {
 
-    render() {
+    constructor(props){
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
 
+    onClick = () => {
+        this.props.onChange(this.props.id);
+    }
+
+    render() {
         return (
-            <div key={this.props.properties.key} className="serviceItem align-center justify-center col-2">
+            <div key={this.props.properties.key} className={"service-item align-center justify-center col-2 " + (this.props.active ? "active" : "inactive")} onClick={this.onClick}>
                 <div className="service">
                     <img className="service-image" src={'./icons/' + this.props.properties.image} alt="Meaningful description" /> 
                 </div>
