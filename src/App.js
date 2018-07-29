@@ -11,8 +11,13 @@ class App extends Component {
 
     this.state = {
       services: [
-        {name: 'Github', address: 'https://github.com', image: 'github-logo.png'},
-        {name: 'Gmail', address: 'https://gmail.google.com', image: 'gmail-logo.png'}
+        {name: 'Facebook', address: 'https://facebook.com', image: 'facebook.svg'},
+        {name: 'Twitter', address: 'https://twitter.svg', image: 'twitter.svg'},
+        {name: 'Instagram', address: 'https://instagram.com', image: 'instagram.svg'},
+        {name: 'LinkedIn', address: 'https://linkedin.com', image: 'linkedin.svg'},
+        {name: 'Gmail', address: 'https://gmail.google.com', image: 'gmail.svg'},
+        {name: 'Outlook', address: 'https://outlook.com', image: 'outlook.svg'},
+        {name: 'Github', address: 'https://github.com', image: 'github-logo.svg'}
       ],
       test: ['item1', 'item2']
     };

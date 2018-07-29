@@ -1,13 +1,21 @@
-.card {
-    cursor: pointer;
-}
-
-.card-body {
-    height: 164px;
-}
-
-.card-image {
-    max-height: 100px;
+.service {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     margin: 0 auto;
-    display: block
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.service:hover .service-image {
+    max-width:60%;
+}
+
+.service-image {
+    display: block;
+    max-width: 80%;
+    transition: 0.3s;
 }
