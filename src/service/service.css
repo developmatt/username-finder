@@ -1,0 +1,13 @@
+.card {
+    cursor: pointer;
+}
+
+.card-body {
+    height: 164px;
+}
+
+.card-image {
+    max-height: 100px;
+    margin: 0 auto;
+    display: block
+}
