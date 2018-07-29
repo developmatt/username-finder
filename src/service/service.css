@@ -24,3 +24,7 @@
     filter: grayscale(100%);
     opacity: 0.2;
 }
+
+.service-item.active.available .service{
+    background-color: green;
+}
