@@ -9,14 +9,14 @@ class Input extends Component {
 
     render() {
         return (
-            <div className="row mt-5">
+            <div className="row">
                <form className="col-12 form-inline">
                     <div className="form-group mr-1">
-                        <input className="form-control" type="text" placeholder="Nome" value={this.props.username} onChange={this.props.updateUsername}/>
+                        <input className="form-control" type="text" placeholder="Username" value={this.props.username} onChange={this.props.updateUsername}/>
                     </div>
 
                     <div className="form-group">
-                        <button className="btn btn-primary" onClick={this.searchUserName}>Check</button>
+                        <button className="btn btn-secondary" onClick={this.searchUserName}>Check</button>
                     </div>
                </form>
             </div>

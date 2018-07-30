@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       services: {
         facebook: {name: 'Facebook', address: 'https://facebook.com', image: 'facebook.svg', active: false, available: 'unknown'},
-        twitter: {name: 'Twitter', address: 'https://twitter.com/', image: 'twitter.svg', active: true, available: 'unknown'},
+        twitter: {name: 'Twitter', address: 'https://twitter.com/', image: 'twitter.svg', active: false, available: 'unknown'},
         instagram: {name: 'Instagram', address: 'https://instagram.com', image: 'instagram.svg', active: false, available: 'unknown'},
         linkedin: {name: 'LinkedIn', address: 'https://linkedin.com', image: 'linkedin.svg', active: false, available: 'unknown'},
         gmail: {name: 'Gmail', address: 'https://gmail.google.com', image: 'gmail.svg', active: false, available: 'unknown'},
@@ -77,12 +77,19 @@ class App extends Component {
     }
 
     return (
-      <div className="container mt-5">
+      <div className="container">
         <div className="block">
-        <div className="servicesList row">
-          {services}
-        </div>
-          <Input updateUsername={this.updateUsername} username={this.state.username} searchUserName={this.searchUserName} />
+          <div className="servicesList row">
+            <div className="col-6">
+              <div className="row">
+                {services}
+              </div>
+            </div>
+
+            <div className="col-6 d-flex align-items-center justify-content-center">
+            <Input updateUsername={this.updateUsername} username={this.state.username} searchUserName={this.searchUserName} />
+            </div>
+          </div>
         </div>
       </div>
     );
