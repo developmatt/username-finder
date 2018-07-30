@@ -11,13 +11,13 @@ class App extends Component {
 
     this.state = {
       services: {
-        facebook: {name: 'Facebook', address: 'https://facebook.com', image: 'facebook.svg', active: false, available: 'unknown'},
+        facebook: {name: 'Facebook', address: 'https://www.facebook.com/', image: 'facebook.svg', active: false, available: 'unknown'},
         twitter: {name: 'Twitter', address: 'https://twitter.com/users/username_available?username=', image: 'twitter.svg', active: false, available: 'unknown'},
         instagram: {name: 'Instagram', address: 'https://instagram.com/', image: 'instagram.svg', active: false, available: 'unknown'},
         linkedin: {name: 'LinkedIn', address: 'https://linkedin.com/', image: 'linkedin.svg', active: false, available: 'unknown'},
         gmail: {name: 'Gmail', address: 'https://gmail.google.com', image: 'gmail.svg', active: false, available: 'unknown'},
         outlook: {name: 'Outlook', address: 'https://outlook.com', image: 'outlook.svg', active: false, available: 'unknown'},
-        github: {name: 'Github', address: 'https://api.github.com/users/', image: 'github-logo.svg', active: true, available: 'unknown'}
+        github: {name: 'Github', address: 'https://api.github.com/users/', image: 'github-logo.svg', active: false, available: 'unknown'}
       },
       username: 'developmatt'
     }
@@ -54,11 +54,10 @@ class App extends Component {
             }
           }) // eslint-disable-next-line
           .catch(error => {
-            console.log('Deu erro'); 
+            console.log('Deu erro', error); 
             obj[service].available = 'unavailable';
             this.setState({obj})
           })
-        //obj[service].available = 'available';
       }
     }
   }
@@ -92,7 +91,7 @@ class App extends Component {
       }else if(xmlHttp.status === 404){
         resolve(true);
       }else{
-        reject(false);
+        reject(xmlHttp);
       }
     })
   }
