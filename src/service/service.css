@@ -32,3 +32,7 @@
 .service-item.active.available .service{
     background-color: green;
 }
+
+.service-item.active.unavailable .service{
+    background-color: red;
+}

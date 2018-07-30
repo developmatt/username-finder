@@ -12,14 +12,14 @@ class App extends Component {
     this.state = {
       services: {
         facebook: {name: 'Facebook', address: 'https://facebook.com', image: 'facebook.svg', active: false, available: 'unknown'},
-        twitter: {name: 'Twitter', address: 'https://twitter.com/', image: 'twitter.svg', active: false, available: 'unknown'},
-        instagram: {name: 'Instagram', address: 'https://instagram.com', image: 'instagram.svg', active: false, available: 'unknown'},
-        linkedin: {name: 'LinkedIn', address: 'https://linkedin.com', image: 'linkedin.svg', active: false, available: 'unknown'},
+        twitter: {name: 'Twitter', address: 'https://twitter.com/users/username_available?username=', image: 'twitter.svg', active: false, available: 'unknown'},
+        instagram: {name: 'Instagram', address: 'https://instagram.com/', image: 'instagram.svg', active: false, available: 'unknown'},
+        linkedin: {name: 'LinkedIn', address: 'https://linkedin.com/', image: 'linkedin.svg', active: false, available: 'unknown'},
         gmail: {name: 'Gmail', address: 'https://gmail.google.com', image: 'gmail.svg', active: false, available: 'unknown'},
         outlook: {name: 'Outlook', address: 'https://outlook.com', image: 'outlook.svg', active: false, available: 'unknown'},
-        github: {name: 'Github', address: 'https://github.com/', image: 'github-logo.svg', active: false, available: 'unknown'}
+        github: {name: 'Github', address: 'https://api.github.com/users/', image: 'github-logo.svg', active: true, available: 'unknown'}
       },
-      username: ''
+      username: 'developmatt'
     }
   }
 
@@ -43,14 +43,23 @@ class App extends Component {
 
       if(this.state.services[service].active){
         obj[service].available = 'waiting';
-        this.getUserNameInAddress(obj[service])
-          .then(result => console.log(result))
-          .catch(error => console.log(error))
-
-
+        this.getUserNameInAddress(obj[service])  // eslint-disable-next-line
+          .then(available => {
+            if(available){
+              obj[service].available = 'available';
+              this.setState({obj});
+            }else{
+              obj[service].available = 'unavailable';
+              this.setState({obj});
+            }
+          }) // eslint-disable-next-line
+          .catch(error => {
+            console.log('Deu erro'); 
+            obj[service].available = 'unavailable';
+            this.setState({obj})
+          })
         //obj[service].available = 'available';
       }
-      this.setState({obj});
     }
   }
 
@@ -58,13 +67,32 @@ class App extends Component {
     return new Promise((resolve, reject) => {
       var xmlHttp = new XMLHttpRequest();
 
-      xmlHttp.open( "GET", service.address + this.state.username, false );
+      xmlHttp.open( "GET", service.address + this.state.username, false);
       xmlHttp.send( null );
-      let result = xmlHttp;
-      if(result.status === 200){
-        resolve(result);
+      let status = false;
+      let xmlHttpRequestResponse
+      if(xmlHttp.status === 200){
+        switch(service.name) {
+          case 'Twitter':
+            xmlHttpRequestResponse = JSON.parse(xmlHttp.responseText);
+            if(xmlHttpRequestResponse.valid){
+              status = true;
+            }
+            break;
+
+          case 'Github':
+            xmlHttpRequestResponse = JSON.parse(xmlHttp.responseText);
+            break;
+
+
+          default:
+            break;
+        }
+        resolve(status);
+      }else if(xmlHttp.status === 404){
+        resolve(true);
       }else{
-        reject('Not found');
+        reject(false);
       }
     })
   }
